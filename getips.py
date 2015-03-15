@@ -11,14 +11,6 @@ import logging
 
 class GetIps:
     def __init__(self,logging):
-        self.proxies = {
-            "http": "http://127.0.0.1:8087",
-            "https" : "http://127.0.0.1:8087",
-        }
-        self.ip_pattern = re.compile('[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
-        self.logging = logging
-
-    def get_chinaz(self, name, timeout):
         name = name.strip()
         session = requests.Session()
         ips = []
@@ -34,11 +26,11 @@ class GetIps:
            "linetype" : "海外",
         }
         try:
-            r = session.post(url, data=playload, proxies=self.proxies, timeout=timeout)
+            r = session.post(url, data=playload, timeout=timeout)
             m = re.search(r'src=\'(/iframe\.ashx.+)\'', r.text)
 
             url = url + m.group(1)
-            r = session.get(url, proxies=self.proxies,timeout=10)
+            r = session.get(url, timeout=10)
             ips = self.ip_pattern.findall(r.text)
         except Exception as e:
             self.logging.debug("name:%s:%s" % (name,e))
@@ -58,7 +50,7 @@ class GetIps:
             "host" : name,
         }
         try:
-            r = session.post(url, data=playload, proxies=self.proxies, timeout=timeout)
+            r = session.post(url, data=playload, timeout=timeout)
             ips = self.ip_pattern.findall(r.text)
         except Exception as e:
             self.logging.debug("name:%s:%s" % (name,e))
