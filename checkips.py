@@ -17,7 +17,7 @@ import fnmatch
 import logging
 
 from ping import quiet_ping
-from getIps import GetIps
+from getips import GetIps
 
 class CheckHosts(object):
     def __init__(self):

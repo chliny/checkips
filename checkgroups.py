@@ -6,7 +6,7 @@ import logging
 import pickle
 
 from checkips import CheckHosts
-from getIps import GetIps
+from getips import GetIps
 
 class FixCheckIps(CheckHosts):
     def __init__(self, fix_name_list, find_new_ip=False):
