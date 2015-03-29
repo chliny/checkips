@@ -119,6 +119,9 @@ def get_group(group_list):
             "google.com.*",
             "*.google.com.*",
             "*.google.cn",
+            "gmail.com",
+            "*.gmail.com",
+            "*.android.com",
             ],
         "dropbox":[
             "*.dropbox.com",
