@@ -91,7 +91,7 @@ class FixCheckIps(CheckHosts):
         self.domain_dict = self.old_domain_dict
         self.check() 
 
-def get_group(groupname):
+def get_group(group_list):
     group_map ={
         "google_cdn":[
             "*.googleapis.com",
@@ -170,12 +170,15 @@ def get_group(groupname):
             "*.wikivoyage.org",
         ],
     }
-    if groupname in group_map:
-        return group_map[groupname]
-    return []
+    ret_list =[]
+    for groupname in group_list:
+        if groupname in group_map:
+            ret_list.extend(group_map[groupname])
+    return ret_list
 
 if __name__ == "__main__":
-    fix_name_list = get_group("google_com")
+    fix_name_list = get_group(["google_com"])
+    #fix_name_list = [""]
 
     fix = FixCheckIps(fix_name_list, find_new_ip=False)
     fix.check()
