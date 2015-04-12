@@ -99,6 +99,8 @@ def get_group(group_list):
             "*.googleusercontent.com",
             "*.gstatic.com",
             "*.ytimg.com",
+            "*.gstatic.cn",
+            "google-analytics.com",
             ],
         "google_spot":[
             "*.blogspot.com",
