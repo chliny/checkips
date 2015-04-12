@@ -420,6 +420,8 @@ class CheckHosts(object):
             if machvalues and ip in machvalues:
                 #logging.debug("domain:%s,ip:%s in black_list" % (domain,ip))
                 return
+            elif machvalues and self.globMach(machvalues, ip):
+                return
 
             if domain in self.domain_dict and self.domain_dict[domain]:
                 return
